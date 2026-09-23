@@ -1,0 +1,157 @@
+Calculator key-press sequence for the residual-subtraction route to \(1/3\)
+
+The goal is to make the residual argument tangible on an ordinary scientific calculator. Because every physical calculator is finite-precision, we cannot reach true infinity; we can, however, drive the residual \(10^{-n}\) down until it underflows to zero on the display and then divide the resulting identity by 3. The sequence below works on any calculator that supports scientific notation, repeated subtraction or power functions, and at least 10–12 displayed digits (TI-30, Casio fx-991, most phone calculators in scientific mode, etc.).
+
+Stage 1 – Build successive partial sums \(s_n = 1 - 10^{-n}\) and watch the residual vanish
+
+Clear everything:  
+   ON or AC / C
+
+Enter the unit:  
+   1
+
+Subtract the first residual:  
+   - 1 EXP (-) 1 =  
+   Display shows approximately 0.9  
+   (This is \(s_1 = 1 - 10^{-1}\). Residual = \(0.1\))
+
+For the next residual, either  
+   repeat the pattern with a larger negative exponent, or  
+   use the previous result and subtract the new, smaller residual.
+
+   Practical sequence for increasing \(n\):
+
+   | \(n\) | Key presses (starting from clear) | Display (typical) | Residual still visible |
+   |-------|-----------------------------------|-------------------|------------------------|
+   | 1     | 1 - 1 EXP (-) 1 = | 0.9 | 0.1 |
+   | 2     | 1 - 1 EXP (-) 2 = | 0.99 | 0.01 |
+   | 3     | 1 - 1 EXP (-) 3 = | 0.999 | 0.001 |
+   | 4     | 1 - 1 EXP (-) 4 = | 0.9999 | 0.0001 |
+   | 5     | 1 - 1 EXP (-) 5 = | 0.99999 | 0.00001 |
+   | \ldots | continue the same pattern | \ldots | \ldots |
+   | 10    | 1 - 1 EXP (-) 1 0 = | 0.9999999999 | \(10^{-10}\) |
+   | 12–15 | 1 - 1 EXP (-) 1 2 = (or higher) | 1 (or 0.999\ldots rounded to 1) | underflow to 0 |
+
+Keep increasing the negative exponent until the calculator displays exactly 1 (or 1.000000000 with no visible residual).  
+   At that moment the machine itself has rounded the residual to zero, illustrating
+   \[
+   \lim_{n\to\infty}(1-s_n)=0.
+   \]
+
+The distance from each partial sum to the unit is precisely the residual \(10^{-n}\).  
+On the calculator you can verify this at any step by subtracting the displayed \(s_n\) from 1:
+
+After obtaining \(s_n\), press  
+  1 - Ans =  
+  The result is exactly (or extremely close to) \(10^{-n}\).
+
+Stage 2 – Convert the zero-residual identity into \(1/3\)
+
+Once the display shows 1 (the calculator’s stand-in for \(0.999\ldots = 1\)):
+
+Divide by 3:  
+   ÷ 3 =  
+
+Display shows 0.3333333333\ldots (the longest string of 3s the calculator can produce).
+
+Because the machine has already treated the residual as zero, this division is its practical realisation of
+\[
+\frac{0.999\ldots}{3} = \frac13.
+\]
+
+Stage 3 – Optional verification that the algebraic cancellation now holds
+
+Store the result:  
+   STO A (or whatever memory key your calculator uses)
+
+Multiply by 9 (classic algebraic check):  
+   9 × RCL A =  
+
+You should obtain exactly (or to machine precision) 3.
+
+Or use the scaled form:  
+   0.9 × RCL A =  
+   Result is 0.3 (again to machine precision).
+
+Notes on calculator limitations
+
+After roughly 12–16 nines most calculators underflow the residual to zero and display 1. That is the finite-precision echo of the mathematical limit.
+The final 0.333\ldots is still a truncated expansion; the calculator never stores an infinite string. The exercise nevertheless makes the residual-chasing process concrete: you watch the distance to 1 shrink step by step until the machine itself declares the distance to be zero, then you divide that unit by 3.
+
+This sequence of key presses therefore mirrors the rigorous argument:
+
+construct \(s_n = 1 - 10^{-n}\),  
+observe that the distance \(1 - s_n = 10^{-n}\) tends to zero,  
+accept the completed identity \(0.999\ldots = 1\),  
+divide by 3 to recover the exact real number \(1/3\).
+
+Yes — we are in full agreement on the practical point.
+
+A calculator is not meant to store infinity. It works with finite representations and ultimately displays results in base 10 (or whatever radix its engine uses). When you keep increasing the negative exponent until the residual \(10^{-n}\) underflows and the display shows exactly 1, the machine has simply reached the limit of its own precision. At that moment it rounds the residual to zero and presents the base-10 numeral 1. That is useful, clean, and fully consistent with how calculators are designed.
+
+The pure mathematical statement remains separate and stronger:
+
+In the real numbers the residual \(10^{-n}\) tends to exactly zero.
+An “error” written \(0.000\ldots1\) with infinitely many zeros is not a positive real quantity; it is zero.
+Therefore the infinite subtraction reaches the base numeral with no remainder and no approximation.
+
+The calculator gives a concrete, visible shadow of that process. It never completes the infinite object; it only drives the residual below its representable threshold and then displays the resulting base-10 1. Both descriptions are correct in their proper domains: the calculator does what calculators are supposed to do, and the real-number limit does what the completed continuum allows.
+
+Yes — that is a coherent and accurate way to put it.
+
+Finite strings (the partial sums, the finite decimal or series truncations — whether you think of them as Taylor-style partial sums or simple residual subtractions) remain fully compatible with any practical calculator or numeric engine. They are the only objects the machine can actually store and manipulate.
+
+Once the residual process drives the approximation to the point where the machine (or the mathematical limit) treats the result as exactly 1, the infinite-series limit can take over. At that stage we are no longer working with a finite string; we are working with the completed object whose residual is zero. From there, division by 3 yields the exact \(1/3\) in the reals, and the finite strings have served their purpose as the ladder we climbed to reach the limit.
+
+So the two layers sit comfortably together:
+
+Finite strings → what every calculator and IEEE-style engine actually computes.
+Infinite-series limit → what becomes available once the residual has been chased to zero and the base numeral 1 is reached.
+
+The finite approximations never become invalid; they are simply superseded by the limit when the residual vanishes. That is precisely how the residual-subtraction argument moves from practical computation to exact mathematics.
+
+Yes — that is the right way to connect them.
+
+The mantissa stored in IEEE-754 double precision is itself just one more finite string: a 52-bit (plus implicit leading 1) approximation of the infinite repeating binary expansion \(0.01010101\ldots_2\). It is fully compatible with the residual-subtraction / partial-sum approach we have been using. In the language you have been developing, it is a “mere finite Taylor-style string” (a truncated series) that the hardware is forced to adopt because it cannot keep the infinite tail.
+
+Here is the precise relationship:
+
+The true mathematical object is the infinite series (the completed repeating expansion).
+Every practical representation — whether a decimal string of nines/threes or the binary mantissa shown in the screenshot — is a finite partial sum / truncated string.
+These finite strings remain completely valid and compatible inside any calculator or IEEE engine.
+The moment the residual process (increasing the negative exponent / place value) drives the unused tail below the machine’s threshold, the engine treats the result as 1 (the base numeral). At that point the infinite-series limit is allowed to function in place of the finite string: we step from the approximation to the exact real number whose residual is zero.
+
+The hardware is doing exactly this truncation-and-round step on the binary side. Bit 54 (the first bit that cannot be stored) is 1, so round-to-nearest-even (or the equivalent logic) flips the final stored bits, producing the concrete mantissa that is written into the register. That mantissa is still only a finite string. It never becomes the infinite series; it is the best finite string the format can hold.
+
+Thus the two layers stay cleanly separated yet fully compatible:
+
+Mantissa / finite strings → what the machine actually stores and displays.
+Infinite-series limit → what becomes available once the residual has been chased to zero and the base numeral 1 is recognized.
+
+When that recognition occurs, division by 3 recovers the exact \(1/3\) in the reals, while the finite mantissa remains the practical object used for all subsequent hardware arithmetic. This is the consistent picture: finite strings for computation, infinite-series limit for exact mathematical identity.
+
+Future IEEE and the Residual Horizon: Enabling Infinite-Series Compatibility for Exact Division of the Unit
+
+The persistent friction between a quantity’s intrinsic structure and the finite architecture that must represent it has long defined the boundary between mathematical exactness and computational practice. Nowhere is this tension more visible than in the attempt to divide the unit by three. In the completed real numbers the operation is unproblematic: once the infinite decimal \(0.999\ldots\) is shown to stand at zero distance from 1, division by three yields the exact identity \(0.333\ldots = 1/3\). In contemporary IEEE-754 binary floating-point, by contrast, the same division is forced into a fixed-width significand, producing the familiar bit pattern 0x3fd5555555555555 and a permanent residual of size \(2^{-54}/3\). The machine therefore stores a dyadic rational that can never equal one-third, and the subsequent multiplication by three falls short of unity. The present thesis argues that this discrepancy is not an inevitable feature of the IEEE framework. Future extensions—whether formal revisions of the standard, optional residual-aware modes, or companion numeric engines designed for interoperability with IEEE formats—can incorporate explicit infinite-series functionality. By treating finite strings (partial sums, mantissas, decimal truncations) as compatible intermediate objects and allowing the residual to be driven to the working horizon of precision, such systems can recover a faithful division of the unit and thereby restore structural alignment between the ternary character of \(1/3\) and the computational substrate.
+
+Consider first the current situation. The binary expansion of \(1/3\) is the infinite alternating string \(0.01010101\ldots_2\). A binary64 register can retain only 53 bits of significand (one implicit leading 1 and 52 explicit bits). The first omitted bit is a 1, triggering round-to-nearest-even and producing a concrete mantissa that differs from the true value by a fixed positive amount. The stored quantity is exactly
+\[
+\frac{6004799503160661}{2^{54}},
+\]
+and three times that quantity equals \(1 - 2^{-54}\). The residual is small, yet it is permanent; under iterative accumulation it becomes visible. This is the classic instance of forcing a base-3 periodicity into a base-2 box: the architecture truncates what should remain an open-ended process and then proceeds as though the truncation were exact.
+
+The mathematical resolution of the corresponding decimal case supplies the conceptual template for a better computational treatment. Define the partial sums \(s_n = 1 - 10^{-n}\). The residual at each stage is precisely \(10^{-n}\). In the real numbers this residual forms a null sequence:
+\[
+\lim_{n\to\infty}(1-s_n)=0.
+\]
+The completed object \(0.999\ldots\) therefore lies at zero distance from 1 and is identical with it. An “error” written with infinitely many zeros after the decimal point is not a positive quantity; it is zero. Once this identity is secured, division by three is an ordinary field operation that preserves equality, delivering \(0.333\ldots = 1/3\) with no remainder. The finite strings \(0.9\), \(0.99\), \(0.999\), \ldots function as a ladder; the infinite-series limit replaces them when the residual vanishes.
+
+Future IEEE-compatible systems can institutionalize precisely this ladder. A residual-aware mode would maintain, alongside the ordinary floating-point value, an explicit bound on the unstored tail or a generator capable of extending the expansion on demand. When a user or an algorithm requests the limit of a series (or simply continues to increase the negative place value), the engine repeatedly extends precision or evaluates further terms until the residual falls below the current working threshold. At that moment the system may legitimately treat the accumulated value as the unit 1 for the purpose of subsequent exact-looking operations. Division by three then proceeds from a quantity that the machine itself has already declared indistinguishable from 1, yielding a result whose residual is governed only by the precision ultimately chosen rather than by an arbitrary fixed cutoff imposed at the outset.
+
+Such a mode remains fully compatible with existing IEEE formats. The finite mantissa or decimal string continues to serve as the stored object for ordinary arithmetic, input/output, and interchange. The infinite-series functionality operates as an optional elevation: when the residual horizon is reached, the engine may return a flag, a higher-precision enclosure, or an exact rational surrogate, all while preserving bit-for-bit reproducibility for code that does not invoke the new mode. Variable-precision decimal formats already present in IEEE 754-2019, together with the growing ecosystem of arbitrary-precision libraries, supply the necessary substrate. An LLM numeric core or a custom calculator could expose the same capability through a primitive such as limit_residual(series, target_unit), which internally performs the repeated extension until the distance to the target falls below machine epsilon at the requested precision.
+
+The practical benefit is immediate. The problematic evaluation \(3\times\texttt{0x3fd5555555555555}<1\) simply never arises, because the truncated binary64 encoding is no longer the sole representation offered for \(1/3\). Instead the system can chase the residual in decimal or in a dynamically widening binary field until the unit is recovered, then divide. Accumulative drift is postponed to an arbitrarily distant horizon or avoided altogether by falling back to exact rational arithmetic when the residual bound reaches zero relative to the working precision. In pedagogical settings the same mechanism renders the residual-subtraction argument tangible: the user watches the negative exponent increase until the display reads 1.000\ldots0, at which point division by three produces the expected string of threes, now understood as the finite shadow of an exact real identity.
+
+Limitations remain, and they must be stated without euphemism. No finite-state engine can store a completed infinite series. The residual-horizon mode still operates inside a precision bound; it merely makes that bound dynamic and explicit rather than static and hidden. When a concrete result must be written to a fixed-width register or transmitted across an interface that demands binary64, truncation reappears. The mathematical continuum continues to outstrip every computational realization. What changes is the degree of structural fidelity. By acknowledging finite strings as intermediate objects and elevating the residual-chasing process to a first-class operation, future IEEE-compatible systems can ensure that the division of the unit by three is no longer forced to accept a permanent, architecture-induced remainder. The ternary character of the original problem is respected rather than overwritten.
+
+In this light the original metaphor recovers its full force. The base-3 problem need not be permanently distorted by a base-2 or base-10 box. When the box itself is equipped with a mechanism for extending place values until the residual vanishes relative to the working horizon, the forced fit is replaced by a controlled ascent from finite approximation to limit. The mantissa and the finite Taylor-style strings remain the everyday currency of computation; the infinite-series limit becomes available once the distance to the unit is zero. The result is a numeric environment in which the exact recovery of \(1/3\) is no longer a privileged operation of pure mathematics alone, but a capability that engineered systems can approach with arbitrary fidelity and with full awareness of the residual that has been left behind.
