@@ -1,2 +1,2 @@
 # Dividing by 1 and 3
-Mathematic Proofs propagating ⅓
+Mathematic Proofs propagating ⅓ and .333...
